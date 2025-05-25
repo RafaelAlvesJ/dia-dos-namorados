@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dia dos Namorados</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://i.pinimg.com/originals/b2/b1/f1/b2b1f1c5d4718f1f9ca49eb23c056f7b.gif') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+
+    .slider {
+      width: 80%;
+      max-width: 400px;
+      margin: 40px auto 20px;
+      position: relative;
+    }
+
+    .slider img {
+      width: 100%;
+      border: 4px solid black;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+      transition: opacity 1s ease-in-out;
+    }
+
+    .timer {
+      font-size: 1.5rem;
+      margin-top: 20px;
+    }
+
+    .message {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      font-size: 1.2rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider">
+    <img id="sliderImage" src="imagens/foto1.png" alt="Imagem Romântica">
+    
+  </div>
+  <div class="timer" id="relationshipTimer"></div>
+  <div class="message">
+    <p id="mensagem">Feliz Dia dos Namorados, meu amor! Você é tudo pra mim e sou grato(a) por cada momento ao seu lado.</p>
+  </div>
+
+  <script>
+    // --- SLIDESHOW ---
+    const images = [
+      'imagens/foto1.png',
+      'imagens/foto2.png',
+      'imagens/foto3.png',
+      'imagens/foto4.png',
+      'imagens/foto5.png',
+      'imagens/foto6.png',
+      'imagens/foto7.png',
+      'imagens/foto8.png'
+    ];
+    let currentIndex = 0;
+    const sliderImage = document.getElementById('sliderImage');
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+      sliderImage.src = images[currentIndex];
+    }, 3000); // Muda a cada 3 segundos
+
+    // --- CRONÔMETRO ---
+    const startDate = new Date('2023-10-07T12:00:00'); // Altere para a data do relacionamento
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / (1000 * 60)) % 60;
+      const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      document.getElementById('relationshipTimer').textContent =
+        `Estamos juntos há ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos.`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>
